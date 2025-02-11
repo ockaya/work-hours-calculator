@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6F295ECD2D5BDF550073B6E2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F295ECC2D5BDF550073B6E2 /* WidgetKit.framework */; };
+		6F295ECF2D5BDF550073B6E2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F295ECE2D5BDF550073B6E2 /* SwiftUI.framework */; };
+		6F295EE02D5BDF560073B6E2 /* HoursWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6F295ECA2D5BDF550073B6E2 /* HoursWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		6F295EDE2D5BDF560073B6E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F513CB12D5B49C900E61917 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F295EC92D5BDF550073B6E2;
+			remoteInfo = HoursWidgetExtension;
+		};
 		6F513CCF2D5B49CA00E61917 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6F513CB12D5B49C900E61917 /* Project object */;
@@ -23,15 +36,64 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6F295EE12D5BDF560073B6E2 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6F295EE02D5BDF560073B6E2 /* HoursWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		6F295ECA2D5BDF550073B6E2 /* HoursWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HoursWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F295ECC2D5BDF550073B6E2 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		6F295ECE2D5BDF550073B6E2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		6F295EF42D5BE30E0073B6E2 /* HoursWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HoursWidgetExtension.entitlements; sourceTree = "<group>"; };
 		6F513CB92D5B49C900E61917 /* Hours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hours.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F513CCE2D5B49CA00E61917 /* HoursTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoursTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F513CD82D5B49CA00E61917 /* HoursUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoursUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6F295EE42D5BDF560073B6E2 /* Exceptions for "HoursWidget" folder in "HoursWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6F295EC92D5BDF550073B6E2 /* HoursWidgetExtension */;
+		};
+		6F295EEE2D5BE0580073B6E2 /* Exceptions for "Hours" folder in "HoursWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Date+Extensions.swift",
+				Hours.xcdatamodeld,
+				PersistenceController.swift,
+				WorkDay.swift,
+			);
+			target = 6F295EC92D5BDF550073B6E2 /* HoursWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		6F295ED02D5BDF550073B6E2 /* HoursWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6F295EE42D5BDF560073B6E2 /* Exceptions for "HoursWidget" folder in "HoursWidgetExtension" target */,
+			);
+			path = HoursWidget;
+			sourceTree = "<group>";
+		};
 		6F513CBB2D5B49C900E61917 /* Hours */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6F295EEE2D5BE0580073B6E2 /* Exceptions for "Hours" folder in "HoursWidgetExtension" target */,
+			);
 			path = Hours;
 			sourceTree = "<group>";
 		};
@@ -48,6 +110,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6F295EC72D5BDF550073B6E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F295ECF2D5BDF550073B6E2 /* SwiftUI.framework in Frameworks */,
+				6F295ECD2D5BDF550073B6E2 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F513CB62D5B49C900E61917 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,12 +143,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F295ECB2D5BDF550073B6E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F295ECC2D5BDF550073B6E2 /* WidgetKit.framework */,
+				6F295ECE2D5BDF550073B6E2 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6F513CB02D5B49C900E61917 = {
 			isa = PBXGroup;
 			children = (
+				6F295EF42D5BE30E0073B6E2 /* HoursWidgetExtension.entitlements */,
 				6F513CBB2D5B49C900E61917 /* Hours */,
 				6F513CD12D5B49CA00E61917 /* HoursTests */,
 				6F513CDB2D5B49CA00E61917 /* HoursUITests */,
+				6F295ED02D5BDF550073B6E2 /* HoursWidget */,
+				6F295ECB2D5BDF550073B6E2 /* Frameworks */,
 				6F513CBA2D5B49C900E61917 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +171,7 @@
 				6F513CB92D5B49C900E61917 /* Hours.app */,
 				6F513CCE2D5B49CA00E61917 /* HoursTests.xctest */,
 				6F513CD82D5B49CA00E61917 /* HoursUITests.xctest */,
+				6F295ECA2D5BDF550073B6E2 /* HoursWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +179,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6F295EC92D5BDF550073B6E2 /* HoursWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F295EE52D5BDF560073B6E2 /* Build configuration list for PBXNativeTarget "HoursWidgetExtension" */;
+			buildPhases = (
+				6F295EC62D5BDF550073B6E2 /* Sources */,
+				6F295EC72D5BDF550073B6E2 /* Frameworks */,
+				6F295EC82D5BDF550073B6E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6F295ED02D5BDF550073B6E2 /* HoursWidget */,
+			);
+			name = HoursWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = HoursWidgetExtension;
+			productReference = 6F295ECA2D5BDF550073B6E2 /* HoursWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		6F513CB82D5B49C900E61917 /* Hours */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F513CE22D5B49CA00E61917 /* Build configuration list for PBXNativeTarget "Hours" */;
@@ -102,10 +208,12 @@
 				6F513CB52D5B49C900E61917 /* Sources */,
 				6F513CB62D5B49C900E61917 /* Frameworks */,
 				6F513CB72D5B49C900E61917 /* Resources */,
+				6F295EE12D5BDF560073B6E2 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6F295EDF2D5BDF560073B6E2 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6F513CBB2D5B49C900E61917 /* Hours */,
@@ -170,9 +278,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					6F295EC92D5BDF550073B6E2 = {
+						CreatedOnToolsVersion = 16.2;
+					};
 					6F513CB82D5B49C900E61917 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -203,11 +314,19 @@
 				6F513CB82D5B49C900E61917 /* Hours */,
 				6F513CCD2D5B49CA00E61917 /* HoursTests */,
 				6F513CD72D5B49CA00E61917 /* HoursUITests */,
+				6F295EC92D5BDF550073B6E2 /* HoursWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6F295EC82D5BDF550073B6E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F513CB72D5B49C900E61917 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +351,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6F295EC62D5BDF550073B6E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F513CB52D5B49C900E61917 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +382,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6F295EDF2D5BDF560073B6E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F295EC92D5BDF550073B6E2 /* HoursWidgetExtension */;
+			targetProxy = 6F295EDE2D5BDF560073B6E2 /* PBXContainerItemProxy */;
+		};
 		6F513CD02D5B49CA00E61917 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6F513CB82D5B49C900E61917 /* Hours */;
@@ -269,6 +400,64 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		6F295EE22D5BDF560073B6E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HoursWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CS55G77VSQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HoursWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HoursWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ock.Hours.HoursWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6F295EE32D5BDF560073B6E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HoursWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CS55G77VSQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HoursWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HoursWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ock.Hours.HoursWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		6F513CE02D5B49CA00E61917 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -393,9 +582,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hours/Hours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hours/Preview Content\"";
+				DEVELOPMENT_TEAM = CS55G77VSQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -421,9 +612,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hours/Hours.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Hours/Preview Content\"";
+				DEVELOPMENT_TEAM = CS55G77VSQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -515,6 +708,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6F295EE52D5BDF560073B6E2 /* Build configuration list for PBXNativeTarget "HoursWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F295EE22D5BDF560073B6E2 /* Debug */,
+				6F295EE32D5BDF560073B6E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6F513CB42D5B49C900E61917 /* Build configuration list for PBXProject "Hours" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

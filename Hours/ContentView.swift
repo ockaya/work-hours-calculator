@@ -1,86 +1,69 @@
-//
-//  ContentView.swift
-//  Hours
-//
-//  Created by Ömer Cem Kaya on 11.02.2025.
-//
-
 import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \WorkDay.date, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
-
+    private var workDays: FetchedResults<WorkDay>
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                // WorkDay kayıtlarını haftanın başlangıcına göre gruplandırıyoruz.
+                ForEach(groupedByWeek.keys.sorted(), id: \.self) { weekKey in
+                    Section(header:
+                        HStack {
+                            Text("Hafta: \(weekHeader(for: weekKey))")
+                            Spacer()
+                            Text(totalWorkedTime(for: groupedByWeek[weekKey] ?? []))
+                        }
+                    ) {
+                        ForEach(groupedByWeek[weekKey] ?? []) { workDay in
+                            NavigationLink(destination: WorkDayEditView(workDay: workDay)) {
+                                WorkDayRowView(workDay: workDay)
+                            }
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
+            .navigationTitle("Hours")
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+    
+    /// WorkDay kayıtlarını haftanın başlangıcına (pazartesi) göre gruplandırır.
+    private var groupedByWeek: [Date: [WorkDay]] {
+        let groups = Dictionary(grouping: workDays, by: { workDay -> Date in
+            let date = workDay.date ?? Date()
+            return date.startOfWeek() ?? date
+        })
+        return groups
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    
+    /// Haftanın başlangıcını (pazartesi) okunabilir formatta verir.
+    private func weekHeader(for monday: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter.string(from: monday)
+    }
+    
+    /// Belirtilen haftadaki günler için toplam çalışma süresini hesaplar.
+    private func totalWorkedTime(for workDays: [WorkDay]) -> String {
+        let totalSeconds = workDays.reduce(0) { result, workDay in
+            if let clockIn = workDay.clockIn, let clockOut = workDay.clockOut {
+                return result + clockOut.timeIntervalSince(clockIn)
             }
+            return result
         }
+        let hours = Int(totalSeconds) / 3600
+        let minutes = (Int(totalSeconds) % 3600) / 60
+        return "\(hours)h \(minutes)m"
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
 }
