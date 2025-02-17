@@ -55,6 +55,50 @@ struct PersistenceController {
         if (try? context.count(for: request)) == 0 {
             self.generateDummyData(context: context)
         }
+        
+        if !self.isCurrentWeekAlreadyAdded(context: context) {
+            self.addRecordsForCurrentWeek(context: context)
+        }
+    }
+    
+    private func isCurrentWeekAlreadyAdded(context: NSManagedObjectContext) -> Bool {
+        let calendar = Calendar.current
+        let today = Date()
+        guard let startOfWeek = today.startOfWeek() else { return false }
+        let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek)!
+        
+        let request: NSFetchRequest<WorkDay> = WorkDay.fetchRequest()
+        request.predicate = NSPredicate(format: "date >= %@ AND date < %@", startOfWeek as NSDate, endOfWeek as NSDate)
+        
+        do {
+            let count = try context.count(for: request)
+            return count > 0
+        } catch {
+            print("Error checking current week records: \(error)")
+            return false
+        }
+    }
+    
+    private func addRecordsForCurrentWeek(context: NSManagedObjectContext) {
+        let calendar = Calendar.current
+        guard let startOfWeek = Date().startOfWeek() else { return }
+        
+        for i in 0..<7 {
+            if let dayDate = calendar.date(byAdding: .day, value: i, to: startOfWeek) {
+                let workDay = WorkDay(context: context)
+                workDay.date = dayDate
+                // clockIn ve clockOut için herhangi bir değer vermiyoruz (nil kalacak)
+                workDay.clockIn = nil
+                workDay.clockOut = nil
+            }
+        }
+        
+        do {
+            try context.save()
+            print("Current week records added successfully.")
+        } catch {
+            print("Error saving current week records: \(error)")
+        }
     }
 
     /// İki haftalık dummy veri oluşturma fonksiyonu (isteğe bağlı)
@@ -72,8 +116,10 @@ struct PersistenceController {
             let workDay = WorkDay(context: context)
             workDay.date = dayDate
             if !calendar.isDateInWeekend(dayDate) {
-                workDay.clockIn = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: dayDate)!
-                workDay.clockOut = calendar.date(bySettingHour: 18, minute: 0, second: 0, of: dayDate)!
+//                workDay.clockIn = calendar.date(bySettingHour: 9, minute: 0, second: 0, of: dayDate)!
+                workDay.clockIn = nil
+//                workDay.clockOut = calendar.date(bySettingHour: 18, minute: 0, second: 0, of: dayDate)!
+                workDay.clockOut = nil
             } else {
                 workDay.clockIn = nil
                 workDay.clockOut = nil
